@@ -20,9 +20,9 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <ScaleOnHover className="h-full">
-      <div className="h-full flex flex-col rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-sm">
-        <div className="aspect-[16/10] bg-gradient-to-br from-zinc-100 via-zinc-200 to-zinc-100 dark:from-zinc-800 dark:via-zinc-800 dark:to-zinc-900 relative">
-          <div className="absolute inset-0 flex items-center justify-center text-zinc-400 dark:text-zinc-600">
+      <div className="h-full flex flex-col rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all">
+        <div className="aspect-[16/10] bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 relative">
+          <div className="absolute inset-0 flex items-center justify-center text-slate-300">
             <svg
               className="w-10 h-10"
               fill="none"
@@ -40,18 +40,18 @@ export default function ProjectCard({
         </div>
         <div className="flex-1 p-5 flex flex-col">
           <Link href={`/projects/${slug}`}>
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-1.5 hover:underline underline-offset-4">
+            <h3 className="text-lg font-semibold text-slate-900 mb-1.5 hover:underline underline-offset-4 decoration-slate-300">
               {title}
             </h3>
           </Link>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 flex-1">
+          <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">
             {description}
           </p>
           <div className="flex flex-wrap gap-1.5 mb-4">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md"
+                className="px-2.5 py-1 text-xs font-medium bg-slate-100 text-slate-600 rounded-md border border-slate-200"
               >
                 {tag}
               </span>
@@ -63,7 +63,7 @@ export default function ProjectCard({
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4"
+                className="text-blue-600 hover:underline underline-offset-4"
               >
                 Live Demo ↗
               </a>
@@ -73,7 +73,7 @@ export default function ProjectCard({
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="text-slate-500 hover:text-slate-900 transition-colors"
               >
                 Source
               </a>

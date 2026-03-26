@@ -6,6 +6,8 @@ interface BlogCardProps {
   slug: string;
   excerpt: string;
   date: string;
+  tags?: string[];
+  readingTime?: number;
 }
 
 export default function BlogCard({
@@ -13,21 +15,41 @@ export default function BlogCard({
   slug,
   excerpt,
   date,
+  tags = [],
+  readingTime,
 }: BlogCardProps) {
   return (
     <ScaleOnHover className="h-full">
       <Link href={`/blog/${slug}`} className="block h-full">
-        <div className="h-full p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-          <time className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
-            {date}
-          </time>
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mt-2 mb-2">
+        <div className="h-full p-6 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
+            <time>{date}</time>
+            {readingTime ? (
+              <>
+                <span className="text-slate-300">•</span>
+                <span>{readingTime} min read</span>
+              </>
+            ) : null}
+          </div>
+          <h3 className="text-lg font-semibold text-slate-900 mt-3 mb-2 hover:underline underline-offset-4 decoration-slate-300">
             {title}
           </h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="text-sm text-slate-600 leading-relaxed">
             {excerpt}
           </p>
-          <span className="inline-block mt-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          {tags.length ? (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {tags.slice(0, 4).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-slate-100 text-slate-700 px-3 py-1 text-[11px] font-medium"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
+          <span className="inline-block mt-4 text-sm font-medium text-slate-600">
             Read more →
           </span>
         </div>

@@ -68,24 +68,24 @@ const skills = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* ─── Hero ─── */}
       <section className="relative min-h-screen flex items-center justify-center px-6 pt-16">
         {/* Subtle gradient orbs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-violet-200/30 dark:bg-violet-900/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-sky-200/30 dark:bg-sky-900/20 blur-3xl" />
+          <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-blue-100/20 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-slate-100/40 blur-3xl" />
         </div>
 
         <div className="relative max-w-3xl mx-auto text-center space-y-6">
           <FadeIn delay={0.2}>
-            <p className="text-sm font-medium tracking-widest uppercase text-zinc-500 dark:text-zinc-500">
+            <p className="text-sm font-medium tracking-widest uppercase text-slate-500">
               Full-Stack Developer & Designer
             </p>
           </FadeIn>
 
           <FadeIn delay={0.35}>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[0.95]">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-slate-900 leading-[0.95]">
               Sombit
               <br />
               Karmakar
@@ -93,7 +93,7 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn delay={0.5}>
-            <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed">
               I build polished, performant web applications with modern tools.
               Currently looking for my next opportunity to create something meaningful.
             </p>
@@ -104,7 +104,7 @@ export default function Home() {
               <MagneticButton>
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-full text-sm font-semibold shadow-lg shadow-zinc-900/10 dark:shadow-zinc-100/10"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors"
                 >
                   View My Work
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -115,7 +115,7 @@ export default function Home() {
               <MagneticButton>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full text-sm font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-50 transition-colors"
                 >
                   Get In Touch
                 </a>
@@ -160,7 +160,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="p-2.5 rounded-full text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-all"
+                  className="p-2.5 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all"
                 >
                   {link.icon}
                 </a>
@@ -174,10 +174,10 @@ export default function Home() {
       <section id="projects" className="py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Featured Projects
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 mb-14 max-w-lg">
+            <p className="text-slate-600 mb-14 max-w-lg">
               A selection of things I&apos;ve built recently. Each one taught me something new.
             </p>
           </FadeIn>
@@ -200,13 +200,13 @@ export default function Home() {
       </section>
 
       {/* ─── Skills ─── */}
-      <section id="skills" className="py-28 px-6 bg-white dark:bg-zinc-900/50">
+      <section id="skills" className="py-28 px-6 bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Skills & Technologies
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 mb-14 max-w-lg">
+            <p className="text-slate-600 mb-14 max-w-lg">
               The tools I reach for when building products from idea to production.
             </p>
           </FadeIn>
@@ -214,12 +214,12 @@ export default function Home() {
           <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
             {skills.map((group) => (
               <StaggerItem key={group.category}>
-                <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="p-6 rounded-xl bg-white border border-slate-200">
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="p-2 rounded-lg bg-zinc-200/60 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                    <div className="p-2 rounded-lg bg-slate-100 text-slate-700">
                       {group.icon}
                     </div>
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                    <h3 className="text-lg font-semibold text-slate-900">
                       {group.category}
                     </h3>
                   </div>
@@ -227,9 +227,9 @@ export default function Home() {
                     {group.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+                        className="flex items-center gap-2 text-sm text-slate-600"
                       >
-                        <span className="h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-600" />
+                        <span className="h-1 w-1 rounded-full bg-slate-400" />
                         {item}
                       </li>
                     ))}
@@ -245,13 +245,13 @@ export default function Home() {
       <section id="contact" className="py-28 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <FadeIn>
-            <p className="text-sm font-medium tracking-widest uppercase text-zinc-500 dark:text-zinc-500 mb-4">
+            <p className="text-sm font-medium tracking-widest uppercase text-slate-500 mb-4">
               Get in touch
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
               Let&apos;s work together
             </h2>
-            <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg text-slate-600 max-w-xl mx-auto mb-10 leading-relaxed">
               I&apos;m currently open to full-time roles and freelance projects.
               If you have an idea you&apos;d like to bring to life — let&apos;s talk.
             </p>
@@ -262,7 +262,7 @@ export default function Home() {
               <MagneticButton>
                 <a
                   href="mailto:your.email@example.com"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-full text-sm font-semibold shadow-lg shadow-zinc-900/10 dark:shadow-zinc-100/10"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -275,7 +275,7 @@ export default function Home() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full text-sm font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors"
                 >
                   Connect on LinkedIn
                 </a>

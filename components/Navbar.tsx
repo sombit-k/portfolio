@@ -20,12 +20,12 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-zinc-50/80 dark:bg-zinc-950/80 border-b border-zinc-200/60 dark:border-zinc-800/60"
+      className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/60"
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between px-6 h-16">
         <Link
           href="/"
-          className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+          className="text-lg font-bold tracking-tight text-slate-900"
         >
           SK
         </Link>
@@ -42,14 +42,14 @@ export default function Navbar() {
                 href={link.href}
                 className={`relative px-3 py-1.5 rounded-full transition-colors ${
                   isActive
-                    ? "text-zinc-900 dark:text-zinc-100"
-                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                    ? "text-slate-900"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active"
-                    className="absolute inset-0 rounded-full bg-zinc-200/60 dark:bg-zinc-800/60"
+                    className="absolute inset-0 rounded-full bg-slate-100"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}

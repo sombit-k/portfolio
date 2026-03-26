@@ -1,48 +1,87 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import { prisma } from "@/lib/prisma";
 import { FadeIn } from "@/components/ui/motion";
-import { formatDate } from "@/lib/utils";
+import {
+  createExcerpt,
+  estimateReadingTime,
+  formatDate,
+} from "@/lib/utils";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
-export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { slug } = params;
   const post = await prisma.blogPost.findUnique({ where: { slug } });
-  if (!post) return { title: "Post Not Found" };
-  return { title: `${post.title} — Sombit Karmakar` };
+
+  if (!post || !post.published) return { title: "Post Not Found" };
+
+  const description = post.excerpt ?? createExcerpt(post.content);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const url = baseUrl ? `${baseUrl}/blog/${slug}` : `/blog/${slug}`;
+
+  return {
+    title: `${post.title} — Sombit Karmakar`,
+    description,
+    keywords: post.tags,
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description,
+      url,
+      type: "article",
+      tags: post.tags,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
   const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post || !post.published) notFound();
 
-  return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 pt-28 pb-20 px-6">
-      <div className="max-w-3xl mx-auto">
-        <FadeIn>
-          <a
-            href="/blog"
-            className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-8 inline-block"
-          >
-            ← Back to blog
-          </a>
-          <time className="block text-sm text-zinc-400 dark:text-zinc-500 mb-2">
-            {formatDate(post.createdAt)}
-          </time>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">
-            {post.title}
-          </h1>
-        </FadeIn>
+  const readingTime = estimateReadingTime(post.content);
 
-        <FadeIn delay={0.15}>
-          <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed whitespace-pre-wrap">
-            {post.content}
+  return (
+    <div className="bg-white">
+      <div className="max-w-4xl mx-auto pt-28 pb-24 px-6">
+        <FadeIn>
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              Blog
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+              {post.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
+              <span>{formatDate(post.createdAt)}</span>
+              <span className="text-slate-400">•</span>
+              <span>{readingTime} min read</span>
+            </div>
+            {post.tags?.length ? (
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-slate-100 text-slate-700 px-3 py-1 text-xs font-medium"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
           </div>
         </FadeIn>
+
+        <article className="mt-10 prose prose-slate max-w-none leading-relaxed">
+          <ReactMarkdown>{post.content}</ReactMarkdown>
+        </article>
       </div>
     </div>
   );

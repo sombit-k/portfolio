@@ -12,16 +12,16 @@ export default async function ProjectsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 pt-28 pb-20 px-6">
+    <div className="min-h-screen bg-white pt-28 pb-20 px-6">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
-          <p className="text-sm font-medium tracking-widest uppercase text-zinc-500 mb-4">
+          <p className="text-sm font-medium tracking-widest uppercase text-slate-500 mb-4">
             Projects
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             Things I&apos;ve built
           </h1>
-          <p className="text-zinc-500 dark:text-zinc-400 mb-14 max-w-lg">
+          <p className="text-slate-600 mb-14 max-w-lg">
             A collection of projects that showcase my skills and interests.
           </p>
         </FadeIn>
@@ -46,7 +46,7 @@ export default async function ProjectsPage() {
           </StaggerContainer>
         ) : (
           <FadeIn delay={0.15}>
-            <p className="text-zinc-500 dark:text-zinc-400">
+            <p className="text-slate-600">
               No projects yet. Check back soon!
             </p>
           </FadeIn>

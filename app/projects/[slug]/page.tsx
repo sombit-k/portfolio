@@ -20,19 +20,19 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 pt-28 pb-20 px-6">
+    <div className="min-h-screen bg-white pt-28 pb-20 px-6">
       <div className="max-w-3xl mx-auto">
         <FadeIn>
           <a
             href="/projects"
-            className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-8 inline-block"
+            className="text-sm text-slate-500 hover:text-slate-900 transition-colors mb-8 inline-block"
           >
             ← Back to projects
           </a>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             {project.title}
           </h1>
-          <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
+          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
             {project.description}
           </p>
         </FadeIn>
@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-full text-sm font-semibold"
+                className="px-5 py-2.5 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors"
               >
                 Live Demo ↗
               </a>
@@ -54,7 +54,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full text-sm font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                className="px-5 py-2.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors"
               >
                 View Source
               </a>

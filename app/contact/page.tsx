@@ -29,16 +29,16 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 pt-28 pb-20 px-6">
+    <div className="min-h-screen bg-white pt-28 pb-20 px-6">
       <div className="max-w-xl mx-auto">
         <FadeIn>
-          <p className="text-sm font-medium tracking-widest uppercase text-zinc-500 mb-4">
+          <p className="text-sm font-medium tracking-widest uppercase text-slate-500 mb-4">
             Contact
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             Get in touch
           </h1>
-          <p className="text-zinc-500 dark:text-zinc-400 mb-10">
+          <p className="text-slate-600 mb-10">
             Have a project in mind or just want to say hello? Drop me a message.
           </p>
         </FadeIn>
@@ -48,7 +48,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5"
+                className="block text-sm font-medium text-slate-700 mb-1.5"
               >
                 Name
               </label>
@@ -58,7 +58,7 @@ export default function ContactPage() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-shadow"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="Your name"
               />
             </div>
@@ -66,7 +66,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5"
+                className="block text-sm font-medium text-slate-700 mb-1.5"
               >
                 Email
               </label>
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-shadow"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 placeholder="you@example.com"
               />
             </div>
@@ -84,7 +84,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5"
+                className="block text-sm font-medium text-slate-700 mb-1.5"
               >
                 Message
               </label>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-shadow resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow resize-none"
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -103,19 +103,19 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full px-7 py-3.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-full text-sm font-semibold shadow-lg shadow-zinc-900/10 dark:shadow-zinc-100/10 disabled:opacity-50 transition-opacity"
+                className="w-full px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 disabled:opacity-50 hover:bg-blue-700 transition-all"
               >
                 {status === "sending" ? "Sending..." : "Send Message"}
               </button>
             </MagneticButton>
 
             {status === "sent" && (
-              <p className="text-sm text-green-600 dark:text-green-400 text-center">
+              <p className="text-sm text-green-600 text-center">
                 Message sent! I&apos;ll get back to you soon.
               </p>
             )}
             {status === "error" && (
-              <p className="text-sm text-red-600 dark:text-red-400 text-center">
+              <p className="text-sm text-red-600 text-center">
                 Something went wrong. Please try again.
               </p>
             )}
