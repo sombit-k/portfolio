@@ -5,7 +5,13 @@ import { formatDate } from "@/lib/utils";
 
 export const metadata = {
   title: "Blog — Sombit Karmakar",
+  description: "Writing & thoughts from Sombit Karmakar — sharing what I learn along the way.",
 };
+
+function readingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
 
 export default async function BlogPage() {
   const posts = await prisma.blogPost.findMany({
@@ -37,6 +43,8 @@ export default async function BlogPage() {
                   slug={post.slug}
                   excerpt={post.excerpt ?? ""}
                   date={formatDate(post.createdAt)}
+                  tags={post.tags}
+                  readingTime={readingTime(post.content)}
                 />
               </StaggerItem>
             ))}
