@@ -185,7 +185,7 @@ export default function NewPost() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-24 pb-16 px-6">
+    <div className="min-h-screen bg-linear-to-b from-slate-50 to-white pt-24 pb-16 px-6">
       <div className="max-w-6xl mx-auto space-y-8">
         <header className="space-y-4">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">

@@ -1,10 +1,11 @@
 "use client";
 
+import { useRef } from "react";
+
 import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  ScaleOnHover,
   MagneticButton,
 } from "@/components/ui/motion";
 import ProjectCard from "@/components/ProjectCard";
@@ -67,14 +68,27 @@ const skills = [
 ];
 
 export default function Home() {
+  const projectsCarouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollProjects = (direction: "left" | "right") => {
+    const container = projectsCarouselRef.current;
+    if (!container) return;
+
+    const scrollAmount = Math.max(280, Math.floor(container.clientWidth * 0.85));
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* ─── Hero ─── */}
       <section className="relative min-h-screen flex items-center justify-center px-6 pt-16">
         {/* Subtle gradient orbs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-blue-100/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-slate-100/40 blur-3xl" />
+          <div className="absolute -top-40 -right-40 h-125 w-125 rounded-full bg-blue-100/20 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-slate-100/40 blur-3xl" />
         </div>
 
         <div className="relative max-w-3xl mx-auto text-center space-y-6">
@@ -182,20 +196,49 @@ export default function Home() {
             </p>
           </FadeIn>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.12}>
-            {projects.map((project) => (
-              <StaggerItem key={project.title}>
-                <ProjectCard
-                  title={project.title}
-                  slug={project.title.toLowerCase().replace(/\s+/g, "-")}
-                  description={project.description}
-                  tags={project.tags}
-                  liveUrl={project.live}
-                  githubUrl={project.github}
-                />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <div className="space-y-5">
+            <div className="flex items-center justify-end gap-3">
+              <button
+                onClick={() => scrollProjects("left")}
+                aria-label="Scroll projects left"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scrollProjects("right")}
+                aria-label="Scroll projects right"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
+
+            <div
+              ref={projectsCarouselRef}
+              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            >
+              {projects.map((project) => (
+                <div
+                  key={project.title}
+                  className="min-w-[85%] sm:min-w-[48%] lg:min-w-[32%] snap-start"
+                >
+                  <ProjectCard
+                    title={project.title}
+                    slug={project.title.toLowerCase().replace(/\s+/g, "-")}
+                    description={project.description}
+                    tags={project.tags}
+                    liveUrl={project.live}
+                    githubUrl={project.github}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -261,7 +304,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton>
                 <a
-                  href="mailto:your.email@example.com"
+                  href="mailto:sombitkarmakar018@gmail.com"
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -272,7 +315,7 @@ export default function Home() {
               </MagneticButton>
               <MagneticButton>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/sombit-karmakar/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors"
