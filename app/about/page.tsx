@@ -22,7 +22,7 @@ export default function AboutPage() {
           <div className="mb-10 flex flex-col md:flex-row md:items-center gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
             <div className="relative h-36 w-36 md:h-40 md:w-40 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
               <Image
-                src="/images/sqpic.jpg"
+                src="/images/profile-picture/profile.jpg"
                 alt="Sombit Karmakar"
                 fill
                 sizes="(max-width: 768px) 170px, 170px"
