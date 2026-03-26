@@ -5,15 +5,17 @@ import { assertAdmin } from "@/lib/auth";
 import { createExcerpt } from "@/lib/utils";
 
 interface RouteContext {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function GET(req: Request, { params }: RouteContext) {
   const authError = assertAdmin(req);
   if (authError) return authError;
 
+  const { slug } = await params;
+
   const post = await prisma.blogPost.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!post) {
@@ -26,6 +28,8 @@ export async function GET(req: Request, { params }: RouteContext) {
 export async function PUT(req: Request, { params }: RouteContext) {
   const authError = assertAdmin(req);
   if (authError) return authError;
+
+  const { slug } = await params;
 
   const body = await req.json();
   const { title, content, tags, published } = body;
@@ -60,11 +64,11 @@ export async function PUT(req: Request, { params }: RouteContext) {
 
   try {
     const post = await prisma.blogPost.update({
-      where: { slug: params.slug },
+      where: { slug },
       data,
     });
     return NextResponse.json(post);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Unable to update the post." },
       { status: 400 }
@@ -76,10 +80,12 @@ export async function DELETE(req: Request, { params }: RouteContext) {
   const authError = assertAdmin(req);
   if (authError) return authError;
 
+  const { slug } = await params;
+
   try {
-    await prisma.blogPost.delete({ where: { slug: params.slug } });
+    await prisma.blogPost.delete({ where: { slug } });
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Unable to delete the post." },
       { status: 400 }

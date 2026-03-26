@@ -63,6 +63,7 @@ export async function POST(req: Request) {
       published: Boolean(published),
     },
   });
+  console.log(post);
 
   return NextResponse.json(post, { status: 201 });
 }

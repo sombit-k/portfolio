@@ -10,13 +10,15 @@ import {
 } from "@/lib/utils";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
+  if (!slug) return { title: "Post Not Found" };
+
   const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post || !post.published) return { title: "Post Not Found" };
@@ -41,7 +43,9 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
+  if (!slug) notFound();
+
   const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post || !post.published) notFound();

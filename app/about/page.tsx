@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/motion";
 
 export const metadata = {
@@ -18,6 +19,25 @@ export default function AboutPage() {
         </FadeIn>
 
         <FadeIn delay={0.15}>
+          <div className="mb-10 flex flex-col md:flex-row md:items-center gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
+            <div className="relative h-36 w-36 md:h-40 md:w-40 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <Image
+                src="/images/sqpic.jpg"
+                alt="Sombit Karmakar"
+                fill
+                sizes="(max-width: 768px) 170px, 170px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="space-y-2">
+              <p className="text-lg font-semibold text-slate-900">Sombit Karmakar</p>
+              <p className="text-sm text-slate-600">
+                Full-stack developer focused on crafting reliable, elegant web products.
+              </p>
+            </div>
+          </div>
+
           <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
             <p>
               Hi, I&apos;m Sombit — a full-stack developer passionate about building

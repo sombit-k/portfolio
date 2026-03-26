@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import BlogCard from "@/components/BlogCard";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
@@ -60,6 +61,14 @@ export default async function BlogPage() {
           </FadeIn>
         )}
       </div>
+
+      <Link
+        href="/admin/new-post"
+        aria-label="Open admin editor"
+        className="fixed bottom-4 right-4 text-[10px] tracking-widest uppercase text-slate-400/25 hover:text-slate-500/60 focus:text-slate-500/60 transition"
+      >
+        new
+      </Link>
     </div>
   );
 }

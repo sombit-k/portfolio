@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import removeMd from "remove-markdown";
+
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -24,9 +26,12 @@ export function slugify(title: string) {
 
 export function createExcerpt(content: string, length = 180) {
   if (!content) return "";
-  const plain = content.replace(/\s+/g, " ").trim();
-  if (plain.length <= length) return plain;
-  return `${plain.slice(0, length).trimEnd()}…`;
+
+const plain = removeMd(content);
+
+if (plain.length <= length) return plain;
+console.log(plain)
+return `${plain.slice(0, length).trimEnd()}...`;
 }
 
 export function estimateReadingTime(content: string, wordsPerMinute = 200) {
