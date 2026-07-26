@@ -1,332 +1,232 @@
-"use client";
+import Image from "next/image";
 
-import { useRef } from "react";
+export const metadata = {
+  title: "Sombit Karmakar - Portfolio",
+  description:
+    "Portfolio of Sombit Karmakar, a full-stack developer with experience in Java, React, Next.js, and backend systems.",
+};
 
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  MagneticButton,
-} from "@/components/ui/motion";
-import ProjectCard from "@/components/ProjectCard";
+const technicalSkills = [
+  "Languages: Java, C, JavaScript, Python",
+  "Web Development: HTML, CSS, React, Node.js, Express.js, Next.js",
+  "Databases: Oracle SQL, PostgreSQL, MongoDB",
+  "Tools & Platforms: Git, VS Code",
+];
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    name: "Quick Court",
     description:
-      "A full-stack e-commerce application with real-time inventory, Stripe payments, and an admin dashboard.",
-    tags: ["Next.js", "PostgreSQL", "Stripe"],
-    live: "#",
-    github: "#",
+      "Developed a platform that helps users book venues and courts directly from facility owners.",
+    github: "https://github.com/sombit-k/quickcourt",
+    demo: "https://www.youtube.com/watch?v=DiCF_CC2JIM",
   },
   {
-    title: "AI Chat Interface",
+    name: "Support User Agents",
     description:
-      "A beautiful conversational AI interface with streaming responses and conversation history.",
-    tags: ["React", "OpenAI", "Tailwind"],
-    live: "#",
-    github: "#",
+      "Built an AI-powered customer support platform with ticket management, real-time analytics, and intelligent chatbot assistance.",
+    github: "https://github.com/sombit-k/support-user-agents/",
+    demo: "https://support-user-agents.vercel.app/",
   },
   {
-    title: "Analytics Dashboard",
+    name: "AI Powered Finance Management App",
     description:
-      "Real-time data visualization dashboard with interactive charts and custom reporting.",
-    tags: ["TypeScript", "D3.js", "Node.js"],
-    live: "#",
-    github: "#",
+      "Built a web app to track expenses and earnings, organize finance, and generate AI-powered insights and monthly reports. Added protection from bots and DDoS attacks using Arcjet.",
+    github: "https://github.com/sombit-k/ai-finance-management-app",
+    demo: "https://ai-finance-management-app-sombit-karmakars-projects.vercel.app/",
   },
 ];
 
-const skills = [
-  {
-    category: "Frontend",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
-      </svg>
-    ),
-    items: ["React & Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    category: "Backend",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-    items: ["Node.js", "PostgreSQL", "Prisma ORM", "REST & GraphQL"],
-  },
-  {
-    category: "Tools & DevOps",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-3.13M11.42 15.17l5.1-3.13m-5.1 3.13V20.7m5.1-8.66V5.3m-5.1 3.13L6.32 5.3m10.2 0L11.42 8.43M20.7 11.42l-3.13-5.1M20.7 11.42l-3.13 5.1m3.13-5.1H14.14m-8.66 5.1l3.13 5.1m-3.13-5.1l3.13-5.1m-3.13 5.1H9.86" />
-      </svg>
-    ),
-    items: ["Git & GitHub", "Docker", "Vercel / AWS", "Figma"],
-  },
-];
+const hobbies = ["Playing video games", "Playing chess", "Exploring new places"];
 
 export default function Home() {
-  const projectsCarouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollProjects = (direction: "left" | "right") => {
-    const container = projectsCarouselRef.current;
-    if (!container) return;
-
-    const scrollAmount = Math.max(280, Math.floor(container.clientWidth * 0.85));
-    container.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* ─── Hero ─── */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-16">
-        {/* Subtle gradient orbs */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 h-125 w-125 rounded-full bg-blue-100/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-slate-100/40 blur-3xl" />
-        </div>
+    <div className="relative min-h-screen overflow-hidden px-6 pt-28 pb-20">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-slate-200/40 blur-3xl" />
+        <div className="absolute top-80 -right-24 h-72 w-72 rounded-full bg-slate-300/20 blur-3xl" />
+      </div>
 
-        <div className="relative max-w-3xl mx-auto text-center space-y-6">
-          <FadeIn delay={0.2}>
-            <p className="text-sm font-medium tracking-widest uppercase text-slate-500">
-              Full-Stack Developer & Designer
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.35}>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-slate-900 leading-[0.95]">
-              Sombit
-              <br />
-              Karmakar
-            </h1>
-          </FadeIn>
-
-          <FadeIn delay={0.5}>
-            <p className="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed">
-              I build polished, performant web applications with modern tools.
-              Currently looking for my next opportunity to create something meaningful.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.65}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <MagneticButton>
-                <a
-                  href="#projects"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors"
-                >
-                  View My Work
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-                  </svg>
-                </a>
-              </MagneticButton>
-              <MagneticButton>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-50 transition-colors"
-                >
-                  Get In Touch
-                </a>
-              </MagneticButton>
+      <div className="mx-auto max-w-6xl space-y-16">
+        <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="space-y-7">
+            <div className="inline-flex rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500 shadow-sm backdrop-blur">
+              Portfolio
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.8}>
-            <div className="flex gap-5 justify-center pt-8">
-              {[
-                {
-                  href: "https://github.com",
-                  label: "GitHub",
-                  icon: (
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                    </svg>
-                  ),
-                },
-                {
-                  href: "https://linkedin.com",
-                  label: "LinkedIn",
-                  icon: (
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  ),
-                },
-                {
-                  href: "https://twitter.com",
-                  label: "X / Twitter",
-                  icon: (
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  ),
-                },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  className="p-2.5 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all"
-                >
-                  {link.icon}
-                </a>
-              ))}
+            <div className="space-y-4">
+              <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl xl:text-7xl">
+                Sombit Karmakar
+              </h1>
+              <p className="max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+                Passionate Computer Science undergrad with hands-on experience in
+                full-stack development and system design. Proficient in Java,
+                React, and JavaScript. Strong foundation in algorithms and clean
+                coding practices.
+              </p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ─── Projects ─── */}
-      <section id="projects" className="py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-slate-600 mb-14 max-w-lg">
-              A selection of things I&apos;ve built recently. Each one taught me something new.
-            </p>
-          </FadeIn>
-
-          <div className="space-y-5">
-            <div className="flex items-center justify-end gap-3">
-              <button
-                onClick={() => scrollProjects("left")}
-                aria-label="Scroll projects left"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+            <div className="flex flex-wrap gap-3 text-sm font-medium text-slate-600">
+              <span className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
+                Full-stack development
+              </span>
+              <span className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
+                System design
+              </span>
+              <span className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
+                Hackathons
+              </span>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href="mailto:sombitkarmakar018@gmail.com"
+                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-950/10 transition-transform hover:-translate-y-0.5 hover:bg-slate-800"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scrollProjects("right")}
-                aria-label="Scroll projects right"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
-            </div>
-
-            <div
-              ref={projectsCarouselRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
-            >
-              {projects.map((project) => (
-                <div
-                  key={project.title}
-                  className="min-w-[85%] sm:min-w-[48%] lg:min-w-[32%] snap-start"
-                >
-                  <ProjectCard
-                    title={project.title}
-                    slug={project.title.toLowerCase().replace(/\s+/g, "-")}
-                    description={project.description}
-                    tags={project.tags}
-                    liveUrl={project.live}
-                    githubUrl={project.github}
-                  />
-                </div>
-              ))}
+                Contact Me
+              </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ─── Skills ─── */}
-      <section id="skills" className="py-28 px-6 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Skills & Technologies
-            </h2>
-            <p className="text-slate-600 mb-14 max-w-lg">
-              The tools I reach for when building products from idea to production.
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
-            {skills.map((group) => (
-              <StaggerItem key={group.category}>
-                <div className="p-6 rounded-xl bg-white border border-slate-200">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="p-2 rounded-lg bg-slate-100 text-slate-700">
-                      {group.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-slate-900">
-                      {group.category}
-                    </h3>
-                  </div>
-                  <ul className="space-y-2.5">
-                    {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-sm text-slate-600"
-                      >
-                        <span className="h-1 w-1 rounded-full bg-slate-400" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ─── Contact ─── */}
-      <section id="contact" className="py-28 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <FadeIn>
-            <p className="text-sm font-medium tracking-widest uppercase text-slate-500 mb-4">
-              Get in touch
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
-              Let&apos;s work together
-            </h2>
-            <p className="text-lg text-slate-600 max-w-xl mx-auto mb-10 leading-relaxed">
-              I&apos;m currently open to full-time roles and freelance projects.
-              If you have an idea you&apos;d like to bring to life — let&apos;s talk.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <MagneticButton>
-                <a
-                  href="mailto:sombitkarmakar018@gmail.com"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                  </svg>
-                  Send me an email
-                </a>
-              </MagneticButton>
-              <MagneticButton>
-                <a
-                  href="https://www.linkedin.com/in/sombit-karmakar/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 text-slate-700 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors"
-                >
-                  Connect on LinkedIn
-                </a>
-              </MagneticButton>
+          <div className="grid gap-4 justify-self-center lg:justify-self-end lg:max-w-[340px]">
+            <div className="overflow-hidden rounded-4xl border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-slate-100">
+                <Image
+                  src="/images/profile-picture/profile.jpg"
+                  alt="Sombit Karmakar"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="object-cover"
+                />
+              </div>
             </div>
-          </FadeIn>
-        </div>
-      </section>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm backdrop-blur">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  Phone
+                </p>
+                <p className="mt-2 text-sm text-slate-700">+91 98755 38533</p>
+              </div>
+              <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm backdrop-blur">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  Email
+                </p>
+                <p className="mt-2 break-all text-sm leading-snug text-slate-700">
+                  sombitkarmakar018@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-4xl border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_20px_60px_rgba(15,23,42,0.12)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">
+              Profile
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-slate-200">
+              Passionate Computer Science undergrad with hands-on experience in
+              full-stack development and system design. Enjoy solving Leetcode
+              problems and participating in hackathons.
+            </p>
+          </div>
+
+          <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Technical Skills
+            </p>
+            <ul className="mt-5 space-y-3 text-slate-700">
+              {technicalSkills.map((skill) => (
+                <li key={skill} className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200/70">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <div>
+            {/* <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              
+            </p> */}
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
+              Key Projects
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                key={project.name}
+                className="flex h-full flex-col justify-between rounded-4xl border border-slate-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-slate-950">
+                    {project.name}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-slate-300 px-4 py-2 text-slate-800 transition-colors hover:bg-slate-100"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-slate-950 px-4 py-2 text-white transition-colors hover:bg-slate-800"
+                  >
+                    Demo
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="flex justify-start pt-2">
+            <a
+              href="https://github.com/sombit-k?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-slate-100"
+            >
+              Other Projects
+            </a>
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Hobbies
+            </p>
+            <ul className="mt-5 space-y-3 text-slate-700">
+              {hobbies.map((hobby) => (
+                <li key={hobby} className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200/70">
+                  {hobby}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Reach Out
+            </p>
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              Available for opportunities, collaborations, and project work.
+              Feel free to connect through email, LinkedIn, or my website.
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

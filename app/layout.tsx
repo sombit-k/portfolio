@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Sombit Karmakar — Full Stack Developer",
   description:
     "Portfolio of Sombit Karmakar. Full-stack developer specializing in React, Next.js, TypeScript, and modern web technologies.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-50 text-slate-900 flex flex-col`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>

@@ -8,7 +8,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="py-10 px-6 border-t border-slate-200">
+    <footer className="border-t border-slate-200/80 bg-white/70 px-6 py-10 backdrop-blur">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
         <p>&copy; {new Date().getFullYear()} Sombit Karmakar</p>
         <div className="flex gap-5">
