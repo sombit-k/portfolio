@@ -15,11 +15,11 @@ const technicalSkills = [
 
 const projects = [
   {
-    name: "Quick Court",
+    name: "AI Powered Finance Management App",
     description:
-      "Developed a platform that helps users book venues and courts directly from facility owners.",
-    github: "https://github.com/sombit-k/quickcourt",
-    demo: "https://www.youtube.com/watch?v=DiCF_CC2JIM",
+      "Built a web app to track expenses and earnings, organize finance, and generate AI-powered insights and monthly reports. Added protection from bots and DDoS attacks using Arcjet.",
+    github: "https://github.com/sombit-k/ai-finance-management-app",
+    demo: "https://ai-finance-management-app-sombit-karmakars-projects.vercel.app/",
   },
   {
     name: "Support User Agents",
@@ -29,11 +29,11 @@ const projects = [
     demo: "https://support-user-agents.vercel.app/",
   },
   {
-    name: "AI Powered Finance Management App",
+    name: "Quick Court",
     description:
-      "Built a web app to track expenses and earnings, organize finance, and generate AI-powered insights and monthly reports. Added protection from bots and DDoS attacks using Arcjet.",
-    github: "https://github.com/sombit-k/ai-finance-management-app",
-    demo: "https://ai-finance-management-app-sombit-karmakars-projects.vercel.app/",
+      "Developed a platform that helps users book venues and courts directly from facility owners.",
+    github: "https://github.com/sombit-k/quickcourt",
+    demo: "https://www.youtube.com/watch?v=DiCF_CC2JIM",
   },
 ];
 
@@ -85,7 +85,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-4 justify-self-center lg:justify-self-end lg:max-w-[340px]">
+          <div className="grid gap-4 justify-self-center lg:justify-self-end lg:max-w-85">
             <div className="overflow-hidden rounded-4xl border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
               <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-slate-100">
                 <Image
